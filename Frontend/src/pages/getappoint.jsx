@@ -37,7 +37,7 @@ const handleSubmit = async (event) => {
   if (!isFormValid) return;
 
   try {
-    const response = await axios.post("http://localhost:5000/getappointment", formData);
+    const response = await axios.post("https://hospital-appointment-0hnv.onrender.com/getappointment", formData);
 
     if (response?.data?.message) {
       alert("Appointment booked successfully!");

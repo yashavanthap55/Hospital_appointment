@@ -8,7 +8,7 @@ const app = express();
 const PORT = 5000; // you can change this if needed
 
 app.use(cors({
-  origin: ['http://localhost:5173'], 
+  origin: ['http://localhost:5173','https://hospital-appointment-0hnv.onrender.com'], 
   methods: ['GET', 'POST','PUT','DELETE'],
   credentials: true
 }));

@@ -9,7 +9,7 @@ const Appointment = () => {
 
   const fetchPatients = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/appointments');
+      const response = await axios.get('https://hospital-appointment-0hnv.onrender.com/appointments');
       setPatients(response.data);
     } catch (error) {
       console.error('Error fetching patient data:', error);
@@ -23,7 +23,7 @@ const Appointment = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/appointments/${id}/approve`);
+      await axios.put(`https://hospital-appointment-0hnv.onrender.com/appointments/${id}/approve`);
       alert("Appointment approved!");
       fetchPatients();
     } catch (err) {
@@ -33,7 +33,7 @@ const Appointment = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/appointments/${id}`);
+      await axios.delete(`https://hospital-appointment-0hnv.onrender.com/appointments/${id}`);
       alert("Appointment deleted!");
       fetchPatients();
     } catch (err) {
