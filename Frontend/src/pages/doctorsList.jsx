@@ -28,7 +28,7 @@ const DoctorsList = () => {
 
   return (
     <div className='doctorsList'>
-      <p style={{ color: 'var(--primary_green--)', fontSize: '1.5vw' }}>Browse through the doctors specialist</p>
+      <p className='brows' style={{ color: 'var(--primary_green--)'}}>Browse through the doctors specialist</p>
       <div className="flex">
         <div className='special'>
           <p onClick={() => navigate('/doctors/General physician')}>General physician</p>

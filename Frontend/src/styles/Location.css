@@ -61,3 +61,29 @@ scale: 0.8;
 .right:hover img{
 scale: 1.3;
 }
+@media (max-width: 768px) {
+  .Location {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left,
+  .bottom{
+    display: none !important;
+  }
+
+  .right {
+    border-radius: 10vw;
+    width: 90% !important;
+    height: 100vh;
+    left: 0;
+  }
+
+  .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

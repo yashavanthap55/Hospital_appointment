@@ -8,7 +8,7 @@ const LoginForm = ({ toggleForm }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
-  const { islogin, Setislogin } = useContext(Appcontext);
+  const { islogin, Setislogin,setUser} = useContext(Appcontext);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,16 +31,26 @@ const LoginForm = ({ toggleForm }) => {
         password: formData.password
       });
       if (response?.data?.message) {
-        console.log(response.data.message);
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token);
-          setSuccessMessage("Login successful! Redirecting...");
-          Setislogin(true);
-          setTimeout(() => {
-            navigate("/");
-          }, 1000);
-        }
-      } else {
+  if (response.data.token) {
+  localStorage.setItem("token", response.data.token);
+setUser({
+  username: response.data.username,
+  role: response.data.role || "user",
+});
+localStorage.setItem(
+  "user",
+  JSON.stringify({
+    username: response.data.username,
+    role: response.data.role || "user",
+  })
+);
+
+    setSuccessMessage("Login successful! Redirecting...");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  }
+} else {
         throw new Error("Unexpected response structure");
       }
     } catch (error) {

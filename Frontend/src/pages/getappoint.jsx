@@ -32,30 +32,29 @@ const GetAppointment = () => {
 
   const isFormValid = formData.name && formData.age && formData.gender && formData.address && formData.doctor && formData.date && formData.time;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!isFormValid) return;
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  if (!isFormValid) return;
 
-    try {
-      const response = await axios.post("http://localhost:5000/getappointment", {
-        name: formData.name,
-        age: formData.age,
-        gender: formData.gender,
-        address: formData.address,
-        doctor: formData.doctor,
-        date: formData.date,   
-        time: formData.time  
-      });
+  try {
+    const response = await axios.post("http://localhost:5000/getappointment", formData);
 
-      if (response?.data?.message) {
-        navigate('/appointments');
-      } else {
-        throw new Error("Unexpected response structure");
-      }
-    } catch (error) {
-      console.error("Submission error:", error);
+    if (response?.data?.message) {
+      alert("Appointment booked successfully!");
+      navigate('/appointments');
+    } else {
+      throw new Error("Unexpected response structure");
     }
-  };
+  } catch (error) {
+    console.error("Submission error:", error);
+    if (error.response?.data?.error === "Doctor already booked at this time.") {
+      alert("That doctor is already booked at this time!");
+    } else {
+      alert("⚠️ Something went wrong. Please try again.");
+    }
+  }
+};
+
 
   return (
     <div className='upper'>

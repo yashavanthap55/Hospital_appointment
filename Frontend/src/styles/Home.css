@@ -118,3 +118,36 @@
     position: absolute;
     border-radius: 50%;
 }
+
+@media (max-width: 768px) {
+  .firstbranch,
+  .secondbranch,
+  .thirdbranch,
+  .cursor,
+  .custom-cursor {
+    display: none !important;
+  }
+
+  .Home {
+    cursor: default;
+   
+  }
+
+  .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+  .center-overlay{
+    display: none;
+  }
+
+  .center h1 {
+    font-size: 15vw;
+    line-height: normal;
+  }
+}

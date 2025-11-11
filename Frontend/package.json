@@ -21,6 +21,7 @@
     "gsap": "^3.12.5",
     "leaflet": "^1.9.4",
     "locomotive-scroll": "^5.0.0-beta.21",
+    "lucide-react": "^0.553.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",

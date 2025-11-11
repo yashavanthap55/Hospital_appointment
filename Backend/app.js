@@ -9,7 +9,7 @@ const PORT = 5000; // you can change this if needed
 
 app.use(cors({
   origin: ['http://localhost:5173'], 
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST','PUT','DELETE'],
   credentials: true
 }));
 app.use(bodyParser.json());
@@ -41,6 +41,7 @@ const patientSchema = new mongoose.Schema({
   doctor: String,
   date: String,
   time: String,
+  status: { type: String, default: 'pending' }  
 });
 
 const User = mongoose.model('User', userSchema);
@@ -77,12 +78,23 @@ app.post('/login', async (req, res) => {
     if (!user || user.password !== password)
       return res.status(400).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user._id }, 'mysecretkey', { expiresIn: '1h' });
-    res.json({ message: 'Login Successful!', token });
+    const token = jwt.sign(
+      { id: user._id, username: user.username, role: user.role || 'user' },
+      'mysecretkey', // use process.env.JWT_SECRET in production
+      { expiresIn: '1h' }
+    );
+
+    res.json({
+      message: 'Login Successful!',
+      token,
+      username: user.username,
+      role: user.role || 'user',
+    });
   } catch (err) {
-    res.status(500).json({ error: 'Database query error' });
+    return res.status(500).json({ error: 'Database query error' });
   }
 });
+
 
 // GET ALL APPOINTMENTS
 app.get('/appointments', async (req, res) => {
@@ -94,12 +106,20 @@ app.get('/appointments', async (req, res) => {
   }
 });
 
-// CREATE NEW APPOINTMENT
 app.post('/getappointment', async (req, res) => {
   const { name, age, gender, address, doctor, date, time } = req.body;
 
   try {
-    const appointment = new Patient({ name, age, gender, address, doctor, date, time });
+    const existing = await Patient.findOne({ doctor, date, time });
+
+    if (existing) {
+      return res.status(400).json({ error: 'Doctor already booked at this time.' });
+    }
+
+    const appointment = new Patient({
+      name, age, gender, address, doctor, date, time, status: 'pending'
+    });
+
     await appointment.save();
     res.json({ message: 'Appointment created successfully!' });
   } catch (err) {
@@ -107,8 +127,46 @@ app.post('/getappointment', async (req, res) => {
   }
 });
 
+
+app.put('/appointments/:id/approve', async (req, res) => {
+  console.log('PUT approve route hit for ID:', req.params.id);
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ error: 'Invalid appointment ID' });
+
+    const appointment = await Patient.findByIdAndUpdate(
+      id,
+      { status: 'approved' },
+      { new: true }
+    );
+    if (!appointment) return res.status(404).json({ error: 'Appointment not found' });
+    res.json({ message: 'Appointment approved', appointment });
+  } catch (err) {
+    console.error('Error approving appointment:', err);
+    res.status(500).json({ error: 'Error approving appointment' });
+  }
+});
+
+app.delete('/appointments/:id', async (req, res) => {
+  console.log('DELETE route hit for ID:', req.params.id);
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ error: 'Invalid appointment ID' });
+
+    const appointment = await Patient.findByIdAndDelete(id);
+    if (!appointment) return res.status(404).json({ error: 'Appointment not found' });
+    res.json({ message: 'Appointment deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting appointment:', err);
+    res.status(500).json({ error: 'Error deleting appointment' });
+  }
+});
+
+
 // ============ Start Server ============
 app.listen(PORT, async () => {
   await connectDB();
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });

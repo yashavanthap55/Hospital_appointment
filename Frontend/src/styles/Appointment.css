@@ -1,55 +1,160 @@
 .Appointment {
-    background: radial-gradient(var(--background--), #509857);
-    color: #fff; /* Ensure text color is readable */
-    min-height: 100vh;
-    width: 100vw;
-    padding: 15vh 2vw;
-    font-family: 'Ubuntu';
+  background: radial-gradient(var(--background--), #509857);
+  color: #fff;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 15vh 2vw;
+  font-family: 'Ubuntu';
+  box-sizing: border-box;
+}
+
+.table {
+  text-align: center;
+  background-color: #388E3C;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.table h1 {
+  color: #0ee80e;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #2E7D32;
+  color: #4eda2b;
+  font-size: 1rem;
+}
+
+td {
+  background-color: #66BB6A;
+  color: #2E7D32;
+  font-size: 0.95rem;
+}
+
+button {
+  background-color: #388E3C;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 2px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #2E7D32;
+}
+
+button:disabled {
+  background-color: #1b5e20;
+  cursor: not-allowed;
+}
+
+/* ===================== Responsive ===================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .Appointment {
+    padding: 12vh 3vw;
   }
-  .table{
-    text-align: center;
-  }
-  .table, th {
-    color: #4eda2b; 
-  }
-  td{
-    color: #2E7D32;
-  }
-  .table h1{
-    color: #0ee80e;
-  }
+
   .table {
-    background-color: #388E3C; 
+    padding: 15px;
+  }
+
+  th, td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .Appointment {
+    padding: 10vh 4vw;
+  }
+
+  .table {
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    border: 0;
+    min-width: unset;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: block;
+    background-color: #66BB6A;
+    border: 1px solid #2E7D32;
+    margin-bottom: 15px;
     border-radius: 8px;
     padding: 10px;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 8px 5px;
+    font-size: 3.5vw;
   }
-  
-  th, td {
-    padding: 8px;
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #004d1a;
     text-align: left;
   }
-  
-  th {
-    background-color: #2E7D32; /* Darker green for headers */
-  }
-  
-  td {
-    background-color: #66BB6A; /* Lighter green for table rows */
-  }
-  
+
   button {
-    background-color: #388E3C; /* Green button */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+    width: 45%;
+    padding: 10px;
+    font-size: 3vw;
   }
-  
-  button:hover {
-    background-color: #2E7D32; /* Darker green on hover */
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .Appointment {
+    padding: 8vh 3vw;
   }
+
+  td {
+    font-size: 4vw;
+  }
+
+  button {
+    width: 100%;
+    font-size: 4vw;
+    margin-top: 5px;
+  }
+}

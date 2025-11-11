@@ -1,71 +1,167 @@
 :root {
-    --background: #e8f5e9; 
-    --green-dark: #388e3c;
-    --green-main: #4caf50;
-    --green-light: #81c784; 
-  }
-  
-  .upper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100vw;
-      min-height: 110vh;
-      background: radial-gradient(var(--background--),#509857);
-      padding: 5vh 0 10vh 0;
-      font-family: 'Ubuntu';
-  }
- 
-  .get-appointment {
-      position: relative;   
-      top: 10vh;  
-      width: 30vw;
-      height: auto;
-      padding: 20px;
-      border: 1px solid var(--green-light);
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(50px);
-  }
-  .get-appointment form button{
+  --background: #e8f5e9;
+  --green-dark: #388e3c;
+  --green-main: #4caf50;
+  --green-light: #81c784;
+}
+
+.upper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 110vh;
+  background: radial-gradient(var(--background--), #509857);
+  padding: 5vh 0 10vh 0;
+  font-family: 'Ubuntu';
+  box-sizing: border-box;
+}
+
+.get-appointment {
+  position: relative;
+  top: 10vh;
+  width: 30vw;
+  height: auto;
+  padding: 25px;
+  border: 1px solid var(--green-light);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(50px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.get-appointment h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--green-dark);
+  font-size: 1.8vw;
+}
+
+.get-appointment form {
+  display: flex;
+  flex-direction: column;
+}
+
+.get-appointment label {
+  margin: 10px 0 8px 0;
+  color: var(--green-dark);
+  font-size: 1vw;
+}
+
+.get-appointment input,
+.get-appointment select {
+  padding: 10px;
+  border: 1px solid var(--green-light);
+  border-radius: 4px;
+  font-size: 1vw;
+}
+
+.get-appointment form button {
   margin-top: 18px;
-  } 
-  
+}
+
+.get-appointment button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--green-main);
+  color: white;
+  font-size: 1.1vw;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-appointment button:hover {
+  background-color: var(--green-dark);
+}
+
+/* ===================== Responsive ===================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .get-appointment {
+    width: 50vw;
+    padding: 20px;
+  }
+
   .get-appointment h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--green-dark); 
+    font-size: 2.2vw;
   }
-  
-  .get-appointment form {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .get-appointment label {
-      margin: 10px 0 10px 0;
-      color: var(--green-dark);
-  }
-  
+
+  .get-appointment label,
   .get-appointment input,
   .get-appointment select {
-      padding: 10px;
-      border: 1px solid var(--green-light);
-      border-radius: 4px;
+    font-size: 1.3vw;
   }
-  
+
   .get-appointment button {
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--green-main); 
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    font-size: 1.4vw;
   }
-  
-  .get-appointment button:hover {
-      background-color: var(--green-dark);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .upper {
+   margin-top: 10vh;
   }
-  
+
+  .get-appointment {
+    width: 80vw;
+    top: 5vh;
+    padding: 20px 15px;
+    border-radius: 10px;
+  }
+
+  .get-appointment h2 {
+    font-size: 5vw;
+    margin-bottom: 15px;
+  }
+
+  .get-appointment label {
+    font-size: 3.5vw;
+    margin: 8px 0 5px 0;
+  }
+
+  .get-appointment input,
+  .get-appointment select {
+    padding: 10px;
+    font-size: 3.8vw;
+  }
+
+  .get-appointment button {
+    font-size: 4vw;
+    padding: 12px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .upper {
+    padding: 5vh 4vw;
+  }
+
+  .get-appointment {
+    width: 90vw;
+    padding: 18px;
+    top: 0;
+  }
+
+  .get-appointment h2 {
+    font-size: 6vw;
+  }
+
+  .get-appointment label {
+    font-size: 4.5vw;
+  }
+
+  .get-appointment input,
+  .get-appointment select {
+    font-size: 4.5vw;
+  }
+
+  .get-appointment button {
+    width: 100%;
+    font-size: 4.5vw;
+    padding: 14px;
+  }
+}
