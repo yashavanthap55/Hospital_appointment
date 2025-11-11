@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html , body{
+    overflow-x: hidden;
+    background: radial-gradient(var(--background--), #509857);
+}
+:root{
+    --primary_green--:#0f5121;
+    --background--:#88ffaa;
+}

@@ -1,0 +1,71 @@
+:root {
+    --background: #e8f5e9; 
+    --green-dark: #388e3c;
+    --green-main: #4caf50;
+    --green-light: #81c784; 
+  }
+  
+  .upper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      min-height: 110vh;
+      background: radial-gradient(var(--background--),#509857);
+      padding: 5vh 0 10vh 0;
+      font-family: 'Ubuntu';
+  }
+ 
+  .get-appointment {
+      position: relative;   
+      top: 10vh;  
+      width: 30vw;
+      height: auto;
+      padding: 20px;
+      border: 1px solid var(--green-light);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(50px);
+  }
+  .get-appointment form button{
+  margin-top: 18px;
+  } 
+  
+  .get-appointment h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--green-dark); 
+  }
+  
+  .get-appointment form {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .get-appointment label {
+      margin: 10px 0 10px 0;
+      color: var(--green-dark);
+  }
+  
+  .get-appointment input,
+  .get-appointment select {
+      padding: 10px;
+      border: 1px solid var(--green-light);
+      border-radius: 4px;
+  }
+  
+  .get-appointment button {
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--green-main); 
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  }
+  
+  .get-appointment button:hover {
+      background-color: var(--green-dark);
+  }
+  

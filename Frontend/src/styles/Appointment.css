@@ -1,0 +1,55 @@
+.Appointment {
+    background: radial-gradient(var(--background--), #509857);
+    color: #fff; /* Ensure text color is readable */
+    min-height: 100vh;
+    width: 100vw;
+    padding: 15vh 2vw;
+    font-family: 'Ubuntu';
+  }
+  .table{
+    text-align: center;
+  }
+  .table, th {
+    color: #4eda2b; 
+  }
+  td{
+    color: #2E7D32;
+  }
+  .table h1{
+    color: #0ee80e;
+  }
+  .table {
+    background-color: #388E3C; 
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #2E7D32; /* Darker green for headers */
+  }
+  
+  td {
+    background-color: #66BB6A; /* Lighter green for table rows */
+  }
+  
+  button {
+    background-color: #388E3C; /* Green button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #2E7D32; /* Darker green on hover */
+  }
